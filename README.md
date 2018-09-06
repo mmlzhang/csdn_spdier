@@ -1,7 +1,3 @@
-### 爬取人人车的所有二手车信息
-
-
-
 >   auth: zhangminglu
 >
 >   datetime: 2018-03-16 20:45
