@@ -1,0 +1,15 @@
+venv
+.idea
+db_sqlite3
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+Dist
+build
+Desktop.ini
+__pycache__
+migrations
+log
+*.log
