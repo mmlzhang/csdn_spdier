@@ -102,5 +102,6 @@ class RedisClient(object):
 
 if __name__ == '__main__':
     conn = RedisClient()
+    proxy = conn.random()
     result = conn.batch(680, 688)
     print(result)

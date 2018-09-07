@@ -1,8 +1,5 @@
 # -*-coding: utf-8 -*-
 
-
-# -*-coding: utf-8 -*-
-
 """
 
     Linux 下使用，多线程实现点击事件，访问数增加
@@ -13,9 +10,8 @@ import time
 import threading
 import requests
 
-# from selenium import webdriver
-
 from setting import *
+from redis_conn import RedisClient
 
 
 def get_article_url_list():
@@ -25,31 +21,33 @@ def get_article_url_list():
         return article_url_list
 
 
-# def get_url(article_url):
-#     """phantomjs 获取url的数据，模拟浏览器发起请求，访问数量加 1 """
-#     browser = webdriver.PhantomJS(phantomjs_driver)
-#     browser.get(article_url)
-#     time.sleep(1)
-#     browser.close()
-
-
-def request_get_url(article_url):
-    requests.get(article_url)
+def request_get_url(article_url, proxy):
+    proxies = {
+        'http': 'http://' + proxy,
+        'https': 'https://' + proxy
+    }
+    try:
+        requests.get(article_url, proxies=proxies)
+        print("okk")
+    except Exception:
+        pass
 
 
 def main():
     article_url_list = get_article_url_list()
+    conn = RedisClient()
     num = 0
     flag = True
     while flag:
         article_url = article_url_list[num]
         num += 1
+        proxy = conn.random()
         if num == len(article_url_list):
             num = 0
             # flag = False
             time.sleep(60)
         # t = threading.Thread(target=get_url, args=(article_url,))
-        t = threading.Thread(target=request_get_url, args=(article_url,))
+        t = threading.Thread(target=request_get_url, args=(article_url, proxy))
         t.start()
         time.sleep(8)
     print('运行结束！！！')
