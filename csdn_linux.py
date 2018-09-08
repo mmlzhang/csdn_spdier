@@ -12,6 +12,7 @@
 import time
 import threading
 import requests
+import random
 
 # from selenium import webdriver
 
@@ -39,10 +40,13 @@ def request_get_url(article_url):
 
 def main():
     article_url_list = get_article_url_list()
-    num = 0
+    num = random.randint(0, len(article_url_list))
     flag = True
     while flag:
-        article_url = article_url_list[num]
+        try:
+            article_url = article_url_list[num]
+        except Exception:
+            article_url = article_url_list[-1]
         num += 1
         if num == len(article_url_list):
             num = 0
