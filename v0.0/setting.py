@@ -46,4 +46,3 @@ PAGE_RANGE = 3
 # 每个文章的url的 xpath
 ARTICLE_URL_XPATH = r'//h4/a'
 BASE_URL = r'https://blog.csdn.net/zhang_ming_lu/article/list/{page_num}'
-phantomjs_driver = r'D:\venv\tools\spider\selenium\phantomjs-2.1.1-windows\bin\phantomjs.exe'
