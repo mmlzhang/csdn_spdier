@@ -7,7 +7,7 @@ import threading
 import pymysql
 import requests
 
-from v2.setting import mysql_config, TIME_DELAY_1, TIME_DEALY_2, MAX_NUM
+from setting import mysql_config, TIME_DELAY_1, TIME_DEALY_2, MAX_NUM
 
 
 def get_article_id_list():
