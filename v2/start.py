@@ -30,36 +30,29 @@ def request_get_url(article_url):
 def click(article_id_list):
     """模拟访问 article_url"""
     url = r'https://blog.csdn.net/zhang_Ming_lu/article/details/'
-    num = random.randint(0, len(article_id_list))
-    flag = True
-    while flag:
+    num = 0
+    # 死循环进行抓取
+    while True:
         try:
-            article_url = url + str(article_id_list[num])
+            pos = random.randint(0, len(article_id_list))
+            article_url = url + str(article_id_list[pos])
         except Exception:
             article_url = url + str(article_id_list[-1])
         num += 1
         if num == len(article_id_list):
-            flag = False
+            # 一个循环到达后，进行休眠，等待多有的线程执行完毕，同时也是进行延迟
+            time.sleep(TIME_DEALY_2)
+            num = 0
         print(article_url)
         t = threading.Thread(target=request_get_url, args=(article_url,))
         t.start()
         t.join()
-        time.sleep(TIME_DEALY_2)
-    # print('本次运行结束！！！')
-    return True
+        print('本次运行结束！！！')
 
 
 def main():
     article_id_list = get_article_id_list()
-    flag = True
-    num = 0
-    while flag:
-        num += 1
-        # print("开始运行！！！ ")
-        click(article_id_list)
-        time.sleep(TIME_DELAY_1)
-        if num > MAX_NUM:
-            flag = False
+    click(article_id_list)
 
 
 if __name__ == "__main__":
