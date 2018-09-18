@@ -43,11 +43,11 @@ def click(article_id_list):
             # 一个循环到达后，进行休眠，等待多有的线程执行完毕，同时也是进行延迟
             time.sleep(TIME_DEALY_2)
             num = 0
-        print(article_url)
+        # print(article_url)
         t = threading.Thread(target=request_get_url, args=(article_url,))
         t.start()
         t.join()
-        print('本次运行结束！！！')
+        # print('本次运行结束！！！')
 
 
 def main():
