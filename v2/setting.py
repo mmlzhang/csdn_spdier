@@ -19,7 +19,7 @@ ARTICLE_TITLE_XPATH = r'//h4/a//text()'
 BASE_URL = r'https://blog.csdn.net/zhang_ming_lu/article/list/{page_num}'
 
 # 将所有文章的url全部请求一次的时间间隔
-TIME_DELAY_1 = 18
+TIME_DELAY_1 = 300
 # 每个url请求之间的时间间隔
 TIME_DEALY_2 = 3
 # 最大访问的次数, 即每个文章的最大访问次数
