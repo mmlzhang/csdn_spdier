@@ -11,12 +11,6 @@ mysql_config = {
     }
 
 # CSDN 博客点击设置
-# 页码数
-PAGE_RANGE = 3
-# 每个文章的url的 xpath
-ARTICLE_URL_XPATH = r'//h4/a'
-ARTICLE_TITLE_XPATH = r'//h4/a//text()'
-BASE_URL = r'https://blog.csdn.net/zhang_ming_lu/article/list/{page_num}'
 
 # 将所有文章的url全部请求一次的时间间隔
 TIME_DELAY_1 = 300
