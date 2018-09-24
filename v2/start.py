@@ -4,10 +4,11 @@ import time
 import random
 import threading
 
+import aiohttp
 import pymysql
 import requests
 
-from setting import mysql_config, TIME_DELAY_1, TIME_DEALY_2, MAX_NUM
+from v3.setting import mysql_config, TIME_DELAY_1, TIME_DEALY_2, MAX_NUM
 
 
 def get_article_id_list():
@@ -19,6 +20,7 @@ def get_article_id_list():
         cursor.execute(sql)
         for article_id in cursor.fetchall():
             article_id_list.append(article_id[0])
+    conn.close()
     return article_id_list
 
 
@@ -31,7 +33,7 @@ def request_get_url(article_url):
         pass
 
 
-def click(article_id_list):
+async def click(article_id_list):
     """模拟访问 article_url"""
     url = r'https://blog.csdn.net/zhang_Ming_lu/article/details/'
     num = 0
@@ -47,16 +49,20 @@ def click(article_id_list):
             # 一个循环到达后，进行休眠，等待多有的线程执行完毕，同时也是进行延迟
             time.sleep(TIME_DELAY_1)
             num = 0
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get(article_url) as resp:
+                print(resp)
         # print(article_url)
-        t = threading.Thread(target=request_get_url, args=(article_url,))
-        t.start()
-        t.join()
+        # t = threading.Thread(target=request_get_url, args=(article_url,))
+        # t.start()
+        # t.join()
         # print('本次运行结束！！！')
 
 
-def main():
+async def main():
     article_id_list = get_article_id_list()
-    click(article_id_list)
+    await click(article_id_list)
 
 
 if __name__ == "__main__":

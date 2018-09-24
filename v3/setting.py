@@ -1,7 +1,7 @@
 
 # MySQL 配置
 mysql_config = {
-    'host': '127.0.0.1',
+    'host': '39.104.171.126',
     'port': 3306,
     'user': 'zhang',
     'passwd': '123456',
