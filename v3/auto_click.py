@@ -32,6 +32,9 @@ def request_get_url(article_url):
         id = article_url.split("/")[-1]
         print(id, end="; ")
     except Exception as e:
+        print()
+        id = article_url.split("/")[-1]
+        print(id)
         print(e)
 
 
