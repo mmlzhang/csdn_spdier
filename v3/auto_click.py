@@ -1,5 +1,6 @@
 # -*-coding: utf-8 -*-
 
+import datetime
 import time
 import random
 import threading
@@ -9,6 +10,7 @@ import requests
 
 from setting import mysql_config, TIME_DELAY_1, TIME_DEALY_2, MAX_NUM
 
+from get_article_id import save_article_id
 
 def get_article_id_list():
     """从数据库获取 article_id"""
@@ -27,8 +29,10 @@ def request_get_url(article_url):
     try:
         requests.get(article_url)
         time.sleep(TIME_DEALY_2)
-    except Exception:
-        pass
+        id = article_url.split("/")[-1]
+        print(id, end="; ")
+    except Exception as e:
+        print(e)
 
 
 def click(article_id_list):
@@ -47,6 +51,13 @@ def click(article_id_list):
             # 一个循环到达后，进行休眠，等待多有的线程执行完毕，同时也是进行延迟
             time.sleep(TIME_DELAY_1)
             num = 0
+        # 每天23:30点进行url的更新
+        hour = datetime.datetime.now().hour
+        minute = datetime.datetime.now().minute
+        second = datetime.datetime.now().second
+        if int(hour) == 23 and int(minute) == 30 and int(second) < 5:
+            save_article_id()
+            article_id_list = get_article_id_list()
         # print(article_url)
         t = threading.Thread(target=request_get_url, args=(article_url,))
         t.start()

@@ -10,7 +10,7 @@ import aiohttp
 import pymysql
 import requests
 
-from .get_article_id import save_article_id
+from get_article_id import save_article_id
 
 from v3.setting import mysql_config, TIME_DELAY_1, TIME_DEALY_2, MAX_NUM
 
