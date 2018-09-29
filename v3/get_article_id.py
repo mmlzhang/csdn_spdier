@@ -35,7 +35,7 @@ def mysql_conn():
     return mysql_conn
 
 
-def main():
+def save_article_id():
     conn = mysql_conn()
     sql_insert = r'insert into tb_csdn (article_id, title, create_time) values (%s, %s, %s)'
     sql_select_ids = r'select article_id from tb_csdn'
@@ -57,4 +57,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    save_article_id()

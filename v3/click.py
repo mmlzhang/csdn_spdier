@@ -1,6 +1,7 @@
 # -*-coding: utf-8 -*-
 
 import time
+import datetime
 import random
 import threading
 import asyncio
@@ -8,6 +9,8 @@ import asyncio
 import aiohttp
 import pymysql
 import requests
+
+from .get_article_id import save_article_id
 
 from v3.setting import mysql_config, TIME_DELAY_1, TIME_DEALY_2, MAX_NUM
 
@@ -35,6 +38,7 @@ class Click(object):
         return article_id_list
 
     def article_url(self):
+        """拼接 url"""
         article_id_list = self.get_article_id_list()
         while not self.flag:
             self.num += 1
@@ -47,6 +51,11 @@ class Click(object):
                 # 一个循环到达后，进行休眠，等待多有的线程执行完毕，同时也是进行延迟
                 time.sleep(TIME_DELAY_1)
                 self.num = 0
+            # 每天23点进行url的更新
+            hour = datetime.datetime.now().hour
+            if int(hour) == 23:
+                save_article_id()
+                article_id_list = self.get_article_id_list()
                 # self.flag = True   # 终止循环
             yield article_url
 
@@ -64,7 +73,7 @@ class Click(object):
     def start(self):
         for i in range(10):
             loop = asyncio.get_event_loop()
-            tasks = [self.click(), ]
+            tasks = [self.click(), self.click(), self.click()]
             loop.run_until_complete(asyncio.wait(tasks))
 
 
