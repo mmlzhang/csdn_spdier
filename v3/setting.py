@@ -13,8 +13,8 @@ mysql_config = {
 # CSDN 博客点击设置
 
 # 将所有文章的url全部请求一次的时间间隔
-TIME_DELAY_1 = 500
+TIME_DELAY_1 = 100
 # 每个url请求之间的时间间隔
-TIME_DEALY_2 = 5
+TIME_DEALY_2 = 0.01
 # 最大访问的次数, 即每个文章的最大访问次数
 MAX_NUM = 10000
