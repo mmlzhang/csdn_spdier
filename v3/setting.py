@@ -1,11 +1,14 @@
 
+import os
+
+
 # MySQL 配置
 mysql_config = {
     'host': '39.104.171.126',
     'port': 3306,
-    'user': 'zhang',
-    'passwd': '123456',
-    'db': 'lanms',
+    'user': os.environ.get("MYSQL_USER"),
+    'passwd': os.environ.get("MYSQL_PASSWORD"),
+    'db': os.environ.get("MYSQL_DB"),
     'charset': 'utf8',
     'autocommit': False
     }

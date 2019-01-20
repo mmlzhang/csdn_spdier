@@ -1,6 +1,5 @@
 # -*-coding: utf-8 -*-
 
-
 """抓取 csdn 博客文章的标题和id 存入 mysql 中"""
 import datetime
 
