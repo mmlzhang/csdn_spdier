@@ -85,7 +85,7 @@ u-msgpack-python==2.5.0
 urllib3==1.23
 urwid==2.0.1
 w3lib==1.19.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 WsgiDAV==2.4.1
 wsproto==0.11.0
 yarl==1.2.6
