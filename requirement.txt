@@ -69,7 +69,7 @@ ruamel.yaml==0.15.47
 Scrapy==1.5.1
 scrapy-redis==0.6.8
 scrapy-redis-bloomfilter==0.7.0
-scrapy-splash==0.7.2
+scrapy-splash==0.8.0
 scrapyd==1.2.0
 scrapyd-client==1.1.0
 scrapyrt==0.10
